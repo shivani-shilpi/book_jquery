@@ -28,9 +28,9 @@ class UsersController < ApplicationController
     def update 
         @user = User.find(params[:id])
         if @user.update(user_params)
-            redirect_to @user
+            render json: { success: true }
         else
-            render :edit
+            render json: { success: false, errors: @user.errors.full_messages }
         end
     end
 
